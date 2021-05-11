@@ -36,9 +36,14 @@
         margin: 0;
         padding: 0;
       }
+
       li {
+        display: inline-block;
         list-style-type: none;
 
+        &:last-child {
+          margin-left: 1.5rem;
+        }
         a {
           // Styles for react-router Link tag
           font-size: 1.8rem;
