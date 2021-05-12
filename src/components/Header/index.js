@@ -20,17 +20,20 @@ const Header = (props) => {
           {currentUser && (
             <ul>
               <li>
-                <span onClick={() => auth.signOut()}>Logout</span>
+                <Link to='/dashboard'>ACCOUNT</Link>
+              </li>
+              <li>
+                <span onClick={() => auth.signOut()}>LOGOUT</span>
               </li>
             </ul>
           )}
           {!currentUser && (
             <ul>
               <li>
-                <Link to='/register'>Register</Link>
+                <Link to='/register'>REGISTER</Link>
               </li>
               <li>
-                <Link to='/login'>Login</Link>
+                <Link to='/login'>LOGIN</Link>
               </li>
             </ul>
           )}
