@@ -64,11 +64,15 @@ class App extends Component {
           />
           <Route
             path='/register'
-            render={() => (
-              <DefaultLayout currentUser={currentUser}>
-                <Registration />
-              </DefaultLayout>
-            )}
+            render={() =>
+              currentUser ? (
+                <Redirect to='/' />
+              ) : (
+                <DefaultLayout currentUser={currentUser}>
+                  <Registration />
+                </DefaultLayout>
+              )
+            }
           />
           <Route
             path='/login'
