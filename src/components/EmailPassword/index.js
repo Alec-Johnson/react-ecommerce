@@ -1,10 +1,10 @@
 import './styles.scss'
 import React, { useState, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { withRouter } from 'react-router-dom'
+import { useHistory } from 'react-router-dom'
 import {
-  resetAllAuthForms,
-  resetPassword,
+  resetPasswordStart,
+  resetUserState,
 } from './../../redux/User/user.actions'
 
 import AuthWrapper from './../AuthWrapper'
@@ -13,35 +13,36 @@ import Button from './../Forms/Button'
 
 const mapState = ({ user }) => ({
   resetPasswordSuccess: user.resetPasswordSuccess,
-  resetPasswordError: user.resetPasswordError,
+  userError: user.userError,
 })
 
 const EmailPassword = (props) => {
-  const { resetPasswordSuccess, resetPasswordError } = useSelector(mapState)
   const dispatch = useDispatch()
+  const history = useHistory()
+  const { resetPasswordSuccess, userError } = useSelector(mapState)
   const [email, setEmail] = useState('')
   const [errors, setErrors] = useState([])
 
   useEffect(() => {
     if (resetPasswordSuccess) {
-      dispatch(resetAllAuthForms())
-      props.history.push('/login')
+      dispatch(resetUserState())
+      history.push('/login')
     }
   }, [resetPasswordSuccess])
 
   useEffect(() => {
-    if (Array.isArray(resetPasswordError) && resetPasswordError.length > 0) {
-      setErrors(resetPasswordError)
+    if (Array.isArray(userError) && userError.length > 0) {
+      setErrors(userError)
     }
-  }, [resetPasswordError])
+  }, [userError])
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    dispatch(resetPassword({ email }))
+    dispatch(resetPasswordStart({ email }))
   }
 
   return (
-    <AuthWrapper headline='Email Password'>
+    <AuthWrapper headline='Reset Password'>
       <div className='formWrap'>
         {errors.length > 0 && (
           <ul>
@@ -60,11 +61,11 @@ const EmailPassword = (props) => {
             onChange={(e) => setEmail(e.target.value)}
           />
 
-          <Button type='submit'>Reset Password</Button>
+          <Button type='submit'>Send Email</Button>
         </form>
       </div>
     </AuthWrapper>
   )
 }
 
-export default withRouter(EmailPassword)
+export default EmailPassword

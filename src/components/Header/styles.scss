@@ -42,9 +42,11 @@
         display: inline-block;
         list-style-type: none;
         margin-right: 1.5rem;
-
         &:last-child {
           margin-right: 0;
+        }
+        span {
+          cursor: pointer;
         }
         a {
           // Styles for react-router Link tag
