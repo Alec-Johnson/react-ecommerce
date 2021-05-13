@@ -32,6 +32,7 @@ export function* getSnapshotFromUserAuth(user, additionalData = {}) {
   }
 }
 
+// Sign in with email
 export function* emailSignIn({ payload: { email, password } }) {
   try {
     const { user } = yield auth.signInWithEmailAndPassword(email, password)
@@ -45,6 +46,7 @@ export function* onEmailSignInStart() {
   yield takeLatest(userTypes.EMAIL_SIGN_IN_START, emailSignIn) // Listens for action then calls emailSignIn
 }
 
+// Check for user auth
 export function* isUserAuthenticated() {
   try {
     const userAuth = yield getCurrentUser()
@@ -59,6 +61,7 @@ export function* onCheckUserSession() {
   yield takeLatest(userTypes.CHECK_USER_SESSION, isUserAuthenticated)
 }
 
+// Sign out 
 export function* signOutUser() {
   try {
     yield auth.signOut()
@@ -72,7 +75,7 @@ export function* onSignOutUserStart() {
   yield takeLatest(userTypes.SIGN_OUT_USER_START, signOutUser)
 }
 
-// Sign up saga
+// Sign up 
 export function* signUpUser({
   payload: { displayName, email, password, confirmPassword },
 }) {
@@ -95,6 +98,7 @@ export function* onSignUpUserStart() {
   yield takeLatest(userTypes.SIGN_UP_USER_START, signUpUser)
 }
 
+// Reset password
 export function* resetPassword({ payload: { email } }) {
   try {
     yield call(handleResetPasswordAPI, email)
@@ -108,6 +112,7 @@ export function* onResetPasswordStart() {
   yield takeLatest(userTypes.RESET_PASSWORD_START, resetPassword)
 }
 
+// Google sign in
 export function* googleSignIn() {
   try {
     const { user } = yield auth.signInWithPopup(GoogleProvider)
@@ -121,6 +126,7 @@ export function* onGoogleSignInStart() {
   yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn)
 }
 
+// Calls all of the sagas and runs in parallel
 export default function* userSagas() {
   yield all([
     call(onEmailSignInStart),
@@ -129,5 +135,5 @@ export default function* userSagas() {
     call(onSignUpUserStart),
     call(onResetPasswordStart),
     call(onGoogleSignInStart),
-  ]) // Listens for CHECK_USER_SESSION and calls isUserAuthenticated
+  ])
 }
