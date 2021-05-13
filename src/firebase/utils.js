@@ -21,6 +21,7 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
   if (!snapshot.exists) {
     const { displayName, email } = userAuth
     const timestamp = new Date()
+    const userRoles = ['user']
 
     try {
       await userRef.set({
@@ -28,6 +29,7 @@ export const handleUserProfile = async ({ userAuth, additionalData }) => {
         email,
         createdAt: timestamp,
         ...additionalData,
+        userRoles,
       })
     } catch (err) {
       console.log(err)

@@ -4,8 +4,12 @@ import { Switch, Route } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { checkUserSession } from './redux/User/user.actions'
 
+// Components
+import AdminTools from './components/AdminTools'
+
 // Higher order components
 import WithAuth from './hoc/withAuth'
+import WithAdmin from './hoc/withAdmin'
 
 // Layouts
 import DefaultLayout from './layouts/DefaultLayout'
@@ -17,6 +21,7 @@ import Registration from './pages/Registration'
 import Login from './pages/Login'
 import Recovery from './pages/Recovery'
 import Dashboard from './pages/Dashboard'
+import Admin from './pages/Admin'
 
 const App = (props) => {
   const dispatch = useDispatch()
@@ -27,6 +32,7 @@ const App = (props) => {
 
   return (
     <div className='App'>
+      <AdminTools />
       <Switch>
         <Route
           exact
@@ -70,6 +76,16 @@ const App = (props) => {
                 <Dashboard />
               </DefaultLayout>
             </WithAuth>
+          )}
+        />
+        <Route
+          path='/admin'
+          render={() => (
+            <WithAdmin>
+              <DefaultLayout>
+                <Admin />
+              </DefaultLayout>
+            </WithAdmin>
           )}
         />
       </Switch>
