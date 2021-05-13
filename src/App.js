@@ -14,6 +14,8 @@ import WithAdmin from './hoc/withAdmin'
 // Layouts
 import DefaultLayout from './layouts/DefaultLayout'
 import HomepageLayout from './layouts/HomepageLayout'
+import AdminLayout from './layouts/AdminLayout'
+import DashboardLayout from './layouts/DashboardLayout'
 
 // Pages
 import Homepage from './pages/Homepage'
@@ -72,9 +74,9 @@ const App = (props) => {
           path='/dashboard'
           render={() => (
             <WithAuth>
-              <DefaultLayout>
+              <DashboardLayout>
                 <Dashboard />
-              </DefaultLayout>
+              </DashboardLayout>
             </WithAuth>
           )}
         />
@@ -82,9 +84,9 @@ const App = (props) => {
           path='/admin'
           render={() => (
             <WithAdmin>
-              <DefaultLayout>
+              <AdminLayout>
                 <Admin />
-              </DefaultLayout>
+              </AdminLayout>
             </WithAdmin>
           )}
         />
