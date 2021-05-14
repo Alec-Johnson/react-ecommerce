@@ -10,12 +10,13 @@ import { setProducts, fetchProductsStart } from './products.actions'
 
 // Add product to store
 export function* addProduct({
-  payload: { productCategory, productName, productPrice, productThumbnail },
+  payload: { productCategory, productName, productPrice, productThumbnail, productDesc },
 }) {
   try {
     const timestamp = new Date()
     yield handleAddProduct({
       productCategory,
+      productDesc,
       productName,
       productPrice,
       productThumbnail,

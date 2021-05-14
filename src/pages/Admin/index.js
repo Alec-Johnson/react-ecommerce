@@ -55,6 +55,7 @@ const Admin = (props) => {
         productName,
         productThumbnail,
         productPrice,
+        productDesc,
       })
     )
     resetForm()
@@ -114,6 +115,14 @@ const Admin = (props) => {
               handleChange={(e) => setProductPrice(e.target.value)}
             />
 
+            <FormInput
+              label='Desc'
+              style={{ height: '100px' }}
+              type='textarea'
+              value={productDesc}
+              handleChange={(e) => setProductDesc(e.target.value)}
+            />
+
             <br />
 
             <Button type='submit'>Add product</Button>
@@ -144,6 +153,7 @@ const Admin = (props) => {
                         productThumbnail,
                         productPrice,
                         productCategory,
+                        productDesc,
                         documentID,
                       } = product
                       return (
@@ -158,6 +168,7 @@ const Admin = (props) => {
                           <td>{productName}</td>
                           <td>{productCategory}</td>
                           <td>${productPrice}</td>
+                          <td>{productDesc}</td>
                           <td>
                             <Button
                               onClick={() =>
