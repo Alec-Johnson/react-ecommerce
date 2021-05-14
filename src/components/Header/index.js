@@ -1,8 +1,9 @@
 import './styles.scss'
 import React from 'react'
-import { useSelector, useDispatch } from 'react-redux'
-import { signOutUserStart } from './../../redux/User/user.actions'
 import { Link } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+
+import { signOutUserStart } from './../../redux/User/user.actions'
 import Logo from './../../assets/logo.png'
 
 const mapState = ({ user }) => ({
@@ -25,6 +26,17 @@ const Header = (props) => {
             <img src={Logo} alt='Store logo' />
           </Link>
         </div>
+
+        <nav>
+          <ul>
+            <li>
+              <Link to='/'>Home</Link>
+            </li>
+            <li>
+              <Link to='/search'>Search</Link>
+            </li>
+          </ul>
+        </nav>
 
         <div className='callToActions'>
           {currentUser && (
