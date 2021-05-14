@@ -47,7 +47,16 @@ const App = (props) => {
           )}
         />
         <Route
+          exact // wont match "/search/:filterType" without {exact}
           path='/search'
+          render={() => (
+            <DefaultLayout>
+              <Search />
+            </DefaultLayout>
+          )}
+        />
+        <Route
+          path='/search/:filterType'
           render={() => (
             <DefaultLayout>
               <Search />

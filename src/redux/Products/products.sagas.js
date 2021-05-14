@@ -10,7 +10,13 @@ import { setProducts, fetchProductsStart } from './products.actions'
 
 // Add product to store
 export function* addProduct({
-  payload: { productCategory, productName, productPrice, productThumbnail, productDesc },
+  payload: {
+    productCategory,
+    productName,
+    productPrice,
+    productThumbnail,
+    productDesc,
+  },
 }) {
   try {
     const timestamp = new Date()
@@ -33,9 +39,9 @@ export function* onAddProductStart() {
   yield takeLatest(productsTypes.ADD_NEW_PRODUCT_START, addProduct)
 }
 
-export function* fetchProducts() {
+export function* fetchProducts({ payload: { filterType } }) {
   try {
-    const products = yield handleFetchProducts()
+    const products = yield handleFetchProducts({ filterType })
     yield put(setProducts(products))
   } catch (err) {
     console.log(err)
