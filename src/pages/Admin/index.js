@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import {
+  addProductStart,
+  fetchProductsStart,
+  deleteProductStart,
+} from './../../redux/Products/products.actions'
 import Modal from './../../components/Modal'
 import FormInput from './../../components/Forms/FormInput'
 import FormSelect from './../../components/Forms/FormSelect'
@@ -7,8 +12,12 @@ import Button from './../../components/Forms/Button'
 
 import './styles.scss'
 
+const mapState = ({ productsData }) => ({
+  products: productsData.products,
+})
 
 const Admin = (props) => {
+  const { products } = useSelector(mapState)
   const dispatch = useDispatch()
   const [hideModal, setHideModal] = useState(true)
   const [productCategory, setProductCategory] = useState('mens')
@@ -16,6 +25,10 @@ const Admin = (props) => {
   const [productThumbnail, setProductThumbnail] = useState('')
   const [productPrice, setProductPrice] = useState(0)
   const [productDesc, setProductDesc] = useState('')
+
+  useEffect(() => {
+    dispatch(fetchProductsStart())
+  }, [])
 
   const toggleModal = () => setHideModal(!hideModal)
 
@@ -35,6 +48,16 @@ const Admin = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
+
+    dispatch(
+      addProductStart({
+        productCategory,
+        productName,
+        productThumbnail,
+        productPrice,
+      })
+    )
+    resetForm()
   }
 
   return (
@@ -97,6 +120,63 @@ const Admin = (props) => {
           </form>
         </div>
       </Modal>
+
+      <div className='manageProducts'>
+        <table border='0' cellPadding='0' cellSpacing='0'>
+          <tbody>
+            <tr>
+              <th>
+                <h1>Manage Products</h1>
+              </th>
+            </tr>
+            <tr>
+              <td>
+                <table
+                  className='results'
+                  border='0'
+                  cellPadding='10'
+                  cellSpacing='0'
+                >
+                  <tbody>
+                    {products.map((product, index) => {
+                      const {
+                        productName,
+                        productThumbnail,
+                        productPrice,
+                        productCategory,
+                        documentID,
+                      } = product
+                      return (
+                        <tr key={index}>
+                          <td>
+                            <img
+                              className='thumb'
+                              src={productThumbnail}
+                              alt={productName}
+                            />
+                          </td>
+                          <td>{productName}</td>
+                          <td>{productCategory}</td>
+                          <td>${productPrice}</td>
+                          <td>
+                            <Button
+                              onClick={() =>
+                                dispatch(deleteProductStart(documentID))
+                              }
+                            >
+                              Delete
+                            </Button>
+                          </td>
+                        </tr>
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   )
 }
