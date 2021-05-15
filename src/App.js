@@ -25,8 +25,9 @@ import Recovery from './pages/Recovery'
 import Dashboard from './pages/Dashboard'
 import Admin from './pages/Admin'
 import Search from './pages/Search'
+import ProductDetails from './pages/ProductDetails'
 
-const App = (props) => {
+const App = () => {
   const dispatch = useDispatch()
 
   useEffect(() => {
@@ -60,6 +61,14 @@ const App = (props) => {
           render={() => (
             <DefaultLayout>
               <Search />
+            </DefaultLayout>
+          )}
+        />
+        <Route
+          path='/product/:productID'
+          render={() => (
+            <DefaultLayout>
+              <ProductDetails />
             </DefaultLayout>
           )}
         />

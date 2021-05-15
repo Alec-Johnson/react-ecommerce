@@ -86,10 +86,7 @@ const ProductResults = () => {
             return null
 
           const configProduct = {
-            productName,
-            productThumbnail,
-            productPrice,
-            productDesc,
+            ...product,
           }
 
           return <Product key={index} {...configProduct} />
