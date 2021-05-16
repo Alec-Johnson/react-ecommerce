@@ -2,17 +2,18 @@ import './styles.scss'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
-
+import { selectCartItemsCount } from './../../redux/Cart/cart.selectors'
 import { signOutUserStart } from './../../redux/User/user.actions'
 import Logo from './../../assets/logo.png'
 
-const mapState = ({ user }) => ({
-  currentUser: user.currentUser,
+const mapState = (state) => ({
+  currentUser: state.user.currentUser,
+  totalNumCartItems: selectCartItemsCount(state),
 })
 
-const Header = (props) => {
+const Header = () => {
   const dispatch = useDispatch()
-  const { currentUser } = useSelector(mapState)
+  const { currentUser, totalNumCartItems } = useSelector(mapState)
 
   const signOut = () => {
     dispatch(signOutUserStart())
@@ -39,26 +40,27 @@ const Header = (props) => {
         </nav>
 
         <div className='callToActions'>
-          {currentUser && (
-            <ul>
+          <ul>
+            <li>
+              <Link to='/cart'>My Cart ({totalNumCartItems})</Link>
+            </li>
+            {currentUser && [
               <li>
                 <Link to='/dashboard'>ACCOUNT</Link>
-              </li>
+              </li>,
               <li>
                 <span onClick={signOut}>LOGOUT</span>
-              </li>
-            </ul>
-          )}
-          {!currentUser && (
-            <ul>
+              </li>,
+            ]}
+            {!currentUser && [
               <li>
                 <Link to='/register'>REGISTER</Link>
-              </li>
+              </li>,
               <li>
                 <Link to='/login'>LOGIN</Link>
-              </li>
-            </ul>
-          )}
+              </li>,
+            ]}
+          </ul>
         </div>
       </div>
     </header>
