@@ -3,7 +3,7 @@ import ShopMens from './../../assets/mens.jpg'
 import ShopWomens from './../../assets/womens.jpg'
 import './styles.scss'
 
-const Directory = (props) => {
+const Directory = () => {
   return (
     <div className='directory'>
       <div className='wrap'>

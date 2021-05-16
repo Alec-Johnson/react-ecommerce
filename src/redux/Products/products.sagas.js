@@ -10,23 +10,11 @@ import productsTypes from './products.types'
 import { setProducts, fetchProductsStart, setProduct } from './products.actions'
 
 // Add product to store
-export function* addProduct({
-  payload: {
-    productCategory,
-    productName,
-    productPrice,
-    productThumbnail,
-    productDesc,
-  },
-}) {
+export function* addProduct({ payload }) {
   try {
     const timestamp = new Date()
     yield handleAddProduct({
-      productCategory,
-      productDesc,
-      productName,
-      productPrice,
-      productThumbnail,
+      ...payload,
       productAdminUserUID: auth.currentUser.uid,
       createdAt: timestamp,
     })

@@ -10,6 +10,7 @@ import FormInput from './../../components/Forms/FormInput'
 import FormSelect from './../../components/Forms/FormSelect'
 import Button from './../../components/Forms/Button'
 import LoadMore from './../../components/LoadMore'
+import CKEditor from 'ckeditor4-react'
 
 import './styles.scss'
 
@@ -131,13 +132,7 @@ const Admin = (props) => {
               handleChange={(e) => setProductPrice(e.target.value)}
             />
 
-            <FormInput
-              label='Desc'
-              style={{ height: '100px' }}
-              type='textarea'
-              value={productDesc}
-              handleChange={(e) => setProductDesc(e.target.value)}
-            />
+            <CKEditor onChange={(e) => setProductDesc(e.editor.getData())} />
 
             <br />
 
@@ -163,7 +158,7 @@ const Admin = (props) => {
                   cellSpacing='0'
                 >
                   <tbody>
-                    {Array.isArray &&
+                    {Array.isArray(data) &&
                       data.length > 0 &&
                       data.map((product, index) => {
                         const {

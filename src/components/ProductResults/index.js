@@ -76,8 +76,7 @@ const ProductResults = () => {
 
       <div className='productResults'>
         {data.map((product, index) => {
-          const { productThumbnail, productName, productDesc, productPrice } =
-            product
+          const { productThumbnail, productName, productPrice } = product
           if (
             !productThumbnail ||
             !productName ||
