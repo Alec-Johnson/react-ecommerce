@@ -1,39 +1,41 @@
-import './main.scss'
-import React, { useEffect } from 'react'
-import { Switch, Route } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { checkUserSession } from './redux/User/user.actions'
+import "./main.scss";
+import React, { useEffect } from "react";
+import { Switch, Route } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { checkUserSession } from "./redux/User/user.actions";
 
 // Components
-import AdminTools from './components/AdminTools'
+import AdminTools from "./components/AdminTools";
 
 // Higher order components
-import WithAuth from './hoc/withAuth'
-import WithAdmin from './hoc/withAdmin'
+import WithAuth from "./hoc/withAuth";
+import WithAdmin from "./hoc/withAdmin";
 
 // Layouts
-import DefaultLayout from './layouts/DefaultLayout'
-import HomepageLayout from './layouts/HomepageLayout'
-import AdminLayout from './layouts/AdminLayout'
-import DashboardLayout from './layouts/DashboardLayout'
+import DefaultLayout from "./layouts/DefaultLayout";
+import HomepageLayout from "./layouts/HomepageLayout";
+import AdminLayout from "./layouts/AdminLayout";
+import DashboardLayout from "./layouts/DashboardLayout";
 
 // Pages
-import Homepage from './pages/Homepage'
-import Registration from './pages/Registration'
-import Login from './pages/Login'
-import Recovery from './pages/Recovery'
-import Dashboard from './pages/Dashboard'
-import Admin from './pages/Admin'
-import Search from './pages/Search'
-import ProductDetails from './pages/ProductDetails'
-import Cart from './pages/Cart'
+import Homepage from "./pages/Homepage";
+import Registration from "./pages/Registration";
+import Login from "./pages/Login";
+import Recovery from "./pages/Recovery";
+import Dashboard from "./pages/Dashboard";
+import Admin from "./pages/Admin";
+import Search from "./pages/Search";
+import ProductDetails from "./pages/ProductDetails";
+import Cart from "./pages/Cart";
+import Payment from "./pages/Payment";
+import Order from "./pages/Order";
 
 const App = () => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(checkUserSession())
-  }, [])
+    dispatch(checkUserSession());
+  }, []);
 
   return (
     <div className='App'>
@@ -82,6 +84,16 @@ const App = () => {
           )}
         />
         <Route
+          path='/payment'
+          render={() => (
+            <WithAuth>
+              <DefaultLayout>
+                <Payment />
+              </DefaultLayout>
+            </WithAuth>
+          )}
+        />
+        <Route
           path='/register'
           render={() => (
             <DefaultLayout>
@@ -117,6 +129,16 @@ const App = () => {
           )}
         />
         <Route
+          path='/order/:orderID'
+          render={() => (
+            <WithAuth>
+              <DashboardLayout>
+                <Order />
+              </DashboardLayout>
+            </WithAuth>
+          )}
+        />
+        <Route
           path='/admin'
           render={() => (
             <WithAdmin>
@@ -128,7 +150,7 @@ const App = () => {
         />
       </Switch>
     </div>
-  )
-}
+  );
+};
 
-export default App
+export default App;
