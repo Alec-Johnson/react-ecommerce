@@ -1,23 +1,23 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import { useHistory } from 'react-router-dom'
+import React from "react";
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import {
   selectCartItems,
   selectCartTotal,
-} from './../../redux/Cart/cart.selectors'
-import { createStructuredSelector } from 'reselect'
-import './styles.scss'
-import Button from './../Forms/Button'
-import Item from './Item'
+} from "./../../redux/Cart/cart.selectors";
+import { createStructuredSelector } from "reselect";
+import "./styles.scss";
+import Button from "./../Forms/Button";
+import Item from "./Item";
 
 const mapState = createStructuredSelector({
   cartItems: selectCartItems,
   total: selectCartTotal,
-})
+});
 
 const Checkout = () => {
-  const history = useHistory()
-  const { cartItems, total } = useSelector(mapState)
+  const history = useHistory();
+  const { cartItems, total } = useSelector(mapState);
 
   return (
     <div className='checkout'>
@@ -54,7 +54,7 @@ const Checkout = () => {
                             <Item {...item} />
                           </td>
                         </tr>
-                      )
+                      );
                     })}
                   </tbody>
                 </table>
@@ -82,7 +82,9 @@ const Checkout = () => {
                             </Button>
                           </td>
                           <td>
-                            <Button>Checkout</Button>
+                            <Button onClick={() => history.push("/payment")}>
+                              Checkout
+                            </Button>
                           </td>
                         </tr>
                       </tbody>
@@ -97,7 +99,7 @@ const Checkout = () => {
         )}
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Checkout
+export default Checkout;
