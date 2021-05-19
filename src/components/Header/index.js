@@ -41,10 +41,10 @@ const Header = () => {
           <div className='middle'>
             <ul>
               <li>
-                <Link to='/'>Home</Link>
+                <Link to='/'>HOME</Link>
               </li>
               <li>
-                <Link to='/search'>Search</Link>
+                <Link to='/shop'>SHOP</Link>
               </li>
             </ul>
           </div>

@@ -52,7 +52,7 @@ const App = () => {
         />
         <Route
           exact // wont match "/search/:filterType" without {exact}
-          path='/search'
+          path='/shop'
           render={() => (
             <DefaultLayout>
               <Shop />
@@ -60,7 +60,7 @@ const App = () => {
           )}
         />
         <Route
-          path='/search/:filterType'
+          path='/shop/:filterType'
           render={() => (
             <DefaultLayout>
               <Shop />

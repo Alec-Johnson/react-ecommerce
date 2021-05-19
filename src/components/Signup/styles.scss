@@ -1,3 +1,12 @@
 .formWrap {
   margin: 3rem auto 0;
+
+  a {
+    // Styles for react-router Link tag
+    font-size: 1.8rem;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
 }

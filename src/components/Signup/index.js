@@ -1,6 +1,6 @@
 import "./styles.scss";
 import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { signUpUserStart } from "../../redux/User/user.actions";
 
@@ -100,6 +100,10 @@ const Signup = () => {
           />
 
           <Button type='submit'>Register</Button>
+          <p>Already have an account?</p>
+          <Button type='submit'>
+            <Link to='/login'>Login</Link>
+          </Button>
         </form>
       </div>
     </AuthWrapper>
