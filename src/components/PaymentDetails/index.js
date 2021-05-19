@@ -124,6 +124,7 @@ const PaymentDetails = () => {
                   }),
                 };
                 dispatch(saveOrderHistory(configOrder));
+                dispatch(clearCart());
               });
           });
       });
