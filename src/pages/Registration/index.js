@@ -1,8 +1,8 @@
-import React from 'react'
-import Signup from './../../components/Signup'
+import React from "react";
+import Signup from "./../../components/Signup";
 
 const Registration = () => {
-  return <Signup />
-}
+  return <Signup />;
+};
 
-export default Registration
+export default Registration;

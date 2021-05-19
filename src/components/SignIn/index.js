@@ -1,48 +1,48 @@
-import './styles.scss'
+import "./styles.scss";
 
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   emailSignInStart,
   googleSignInStart,
-} from '../../redux/User/user.actions'
-import { Link, useHistory } from 'react-router-dom'
+} from "../../redux/User/user.actions";
+import { Link, useHistory } from "react-router-dom";
 
-import Button from './../Forms/Button'
-import FormInput from './../Forms/FormInput'
-import AuthWrapper from './../AuthWrapper'
+import Button from "./../Forms/Button";
+import FormInput from "./../Forms/FormInput";
+import AuthWrapper from "./../AuthWrapper";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
-})
+});
 
 const SignIn = () => {
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const { currentUser } = useSelector(mapState)
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { currentUser } = useSelector(mapState);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   useEffect(() => {
     if (currentUser) {
-      resetForm()
-      history.push('/')
+      resetForm();
+      history.push("/");
     }
-  }, [currentUser])
+  }, [currentUser]);
 
   const resetForm = () => {
-    setEmail('')
-    setPassword('')
-  }
+    setEmail("");
+    setPassword("");
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
-    dispatch(emailSignInStart({ email, password }))
-  }
+    e.preventDefault();
+    dispatch(emailSignInStart({ email, password }));
+  };
 
   const handleGoogleSignIn = () => {
-    dispatch(googleSignInStart())
-  }
+    dispatch(googleSignInStart());
+  };
 
   return (
     <AuthWrapper headline='Login'>
@@ -78,7 +78,7 @@ const SignIn = () => {
         </form>
       </div>
     </AuthWrapper>
-  )
-}
+  );
+};
 
-export default SignIn
+export default SignIn;

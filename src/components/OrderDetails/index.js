@@ -54,7 +54,7 @@ const OrderDetails = ({ order }) => {
       dispatch(setOrderDetails({})); // clear state when navigating off page
     };
   }, []);
-  
+
   return (
     <TableContainer>
       <Table>

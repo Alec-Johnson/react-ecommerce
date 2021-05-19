@@ -1,19 +1,19 @@
-import { firestore } from './../../firebase/utils'
+import { firestore } from "./../../firebase/utils";
 
 export const handleAddProduct = (product) => {
   return new Promise((resolve, reject) => {
     firestore
-      .collection('products')
+      .collection("products")
       .doc()
       .set(product)
       .then(() => {
-        resolve()
+        resolve();
       })
       .catch((err) => {
-        reject(err)
-      })
-  })
-}
+        reject(err);
+      });
+  });
+};
 
 export const handleFetchProducts = ({
   filterType,
@@ -21,20 +21,20 @@ export const handleFetchProducts = ({
   persistProducts = [],
 }) => {
   return new Promise((resolve, reject) => {
-    const pageSize = 6
+    const pageSize = 6;
 
     let ref = firestore
-      .collection('products')
-      .orderBy('createdAt')
-      .limit(pageSize)
+      .collection("products")
+      .orderBy("createdAt")
+      .limit(pageSize);
 
-    if (filterType) ref = ref.where('productCategory', '==', filterType)
-    if (startAfterDoc) ref = ref.startAfter(startAfterDoc)
+    if (filterType) ref = ref.where("productCategory", "==", filterType);
+    if (startAfterDoc) ref = ref.startAfter(startAfterDoc);
 
     ref
       .get()
       .then((snapshot) => {
-        const totalCount = snapshot.size
+        const totalCount = snapshot.size;
 
         const data = [
           ...persistProducts,
@@ -42,43 +42,43 @@ export const handleFetchProducts = ({
             return {
               ...doc.data(),
               documentID: doc.id,
-            }
+            };
           }),
-        ]
+        ];
         resolve({
           data,
           queryDoc: snapshot.docs[totalCount - 1],
           isLastPage: totalCount < pageSize,
-        })
+        });
       })
       .catch((err) => {
-        reject(err)
-      })
-  })
-}
+        reject(err);
+      });
+  });
+};
 
 export const handleDeleteProduct = (documentID) => {
   return new Promise((resolve, reject) => {
     firestore
-      .collection('products')
+      .collection("products")
       .doc(documentID)
       .delete()
       .then(() => {
-        resolve()
+        resolve();
       })
-      .catch((err) => reject(err))
-  })
-}
+      .catch((err) => reject(err));
+  });
+};
 
 export const handleFetchProduct = (productID) => {
   return new Promise((resolve, reject) => {
     firestore
-      .collection('products')
+      .collection("products")
       .doc(productID)
       .get()
       .then((snapshot) => {
-        if (snapshot.exists) resolve(snapshot.data())
+        if (snapshot.exists) resolve(snapshot.data());
       })
-      .catch((err) => reject(err))
-  })
-}
+      .catch((err) => reject(err));
+  });
+};

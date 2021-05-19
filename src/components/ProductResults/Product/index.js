@@ -1,30 +1,30 @@
-import React from 'react'
-import { Link, useHistory } from 'react-router-dom'
-import Button from './../../Forms/Button'
-import { useDispatch } from 'react-redux'
-import { addProduct } from './../../../redux/Cart/cart.actions'
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
+import Button from "./../../Forms/Button";
+import { useDispatch } from "react-redux";
+import { addProduct } from "./../../../redux/Cart/cart.actions";
 
 const Product = (product) => {
-  const { productThumbnail, productName, productPrice, documentID } = product
-  const dispatch = useDispatch()
-  const history = useHistory()
+  const { productThumbnail, productName, productPrice, documentID } = product;
+  const dispatch = useDispatch();
+  const history = useHistory();
   if (
     !documentID ||
     !productThumbnail ||
     !productName ||
-    typeof productPrice === 'undefined'
+    typeof productPrice === "undefined"
   )
-    return null
+    return null;
 
   const configAddToCartBtn = {
-    type: 'button',
-  }
+    type: "button",
+  };
 
   const handleAddToCart = (product) => {
-    if (!product) return
-    dispatch(addProduct(product))
-    history.push('/cart')
-  }
+    if (!product) return;
+    dispatch(addProduct(product));
+    history.push("/cart");
+  };
 
   return (
     <div className='product'>
@@ -57,7 +57,7 @@ const Product = (product) => {
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Product
+export default Product;

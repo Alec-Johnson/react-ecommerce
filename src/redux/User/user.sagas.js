@@ -1,129 +1,129 @@
-import { takeLatest, all, call, put } from 'redux-saga/effects'
-import userTypes from './user.types'
+import { takeLatest, all, call, put } from "redux-saga/effects";
+import userTypes from "./user.types";
 import {
   signInSuccess,
   signOutUserSuccess,
   userError,
   resetPasswordSuccess,
-} from './user.actions'
+} from "./user.actions";
 import {
   auth,
   handleUserProfile,
   getCurrentUser,
   GoogleProvider,
-} from './../../firebase/utils'
-import { handleResetPasswordAPI } from './user.helpers'
+} from "./../../firebase/utils";
+import { handleResetPasswordAPI } from "./user.helpers";
 
 export function* getSnapshotFromUserAuth(user, additionalData = {}) {
   try {
     const userRef = yield call(handleUserProfile, {
       userAuth: user,
       additionalData,
-    })
-    const snapshot = yield userRef.get()
+    });
+    const snapshot = yield userRef.get();
     yield put(
       signInSuccess({
         id: snapshot.id,
         ...snapshot.data(),
       })
-    )
+    );
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
 // Sign in with email
 export function* emailSignIn({ payload: { email, password } }) {
   try {
-    const { user } = yield auth.signInWithEmailAndPassword(email, password)
-    yield getSnapshotFromUserAuth(user)
+    const { user } = yield auth.signInWithEmailAndPassword(email, password);
+    yield getSnapshotFromUserAuth(user);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
 export function* onEmailSignInStart() {
-  yield takeLatest(userTypes.EMAIL_SIGN_IN_START, emailSignIn) // Listens for action then calls emailSignIn
+  yield takeLatest(userTypes.EMAIL_SIGN_IN_START, emailSignIn); // Listens for action then calls emailSignIn
 }
 
 // Check for user auth
 export function* isUserAuthenticated() {
   try {
-    const userAuth = yield getCurrentUser()
-    if (!userAuth) return
-    yield getSnapshotFromUserAuth(userAuth)
+    const userAuth = yield getCurrentUser();
+    if (!userAuth) return;
+    yield getSnapshotFromUserAuth(userAuth);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
 export function* onCheckUserSession() {
-  yield takeLatest(userTypes.CHECK_USER_SESSION, isUserAuthenticated)
+  yield takeLatest(userTypes.CHECK_USER_SESSION, isUserAuthenticated);
 }
 
-// Sign out 
+// Sign out
 export function* signOutUser() {
   try {
-    yield auth.signOut()
-    yield put(signOutUserSuccess())
+    yield auth.signOut();
+    yield put(signOutUserSuccess());
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
 export function* onSignOutUserStart() {
-  yield takeLatest(userTypes.SIGN_OUT_USER_START, signOutUser)
+  yield takeLatest(userTypes.SIGN_OUT_USER_START, signOutUser);
 }
 
-// Sign up 
+// Sign up
 export function* signUpUser({
   payload: { displayName, email, password, confirmPassword },
 }) {
   if (password !== confirmPassword) {
-    const error = ['Passwords do not match, try again']
-    yield put(userError(error))
-    return
+    const error = ["Passwords do not match, try again"];
+    yield put(userError(error));
+    return;
   }
 
   try {
-    const { user } = yield auth.createUserWithEmailAndPassword(email, password)
-    const additionalData = { displayName }
-    yield getSnapshotFromUserAuth(user, additionalData)
+    const { user } = yield auth.createUserWithEmailAndPassword(email, password);
+    const additionalData = { displayName };
+    yield getSnapshotFromUserAuth(user, additionalData);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
 export function* onSignUpUserStart() {
-  yield takeLatest(userTypes.SIGN_UP_USER_START, signUpUser)
+  yield takeLatest(userTypes.SIGN_UP_USER_START, signUpUser);
 }
 
 // Reset password
 export function* resetPassword({ payload: { email } }) {
   try {
-    yield call(handleResetPasswordAPI, email)
-    yield put(resetPasswordSuccess())
+    yield call(handleResetPasswordAPI, email);
+    yield put(resetPasswordSuccess());
   } catch (err) {
-    yield put(userError(err))
+    yield put(userError(err));
   }
 }
 
 export function* onResetPasswordStart() {
-  yield takeLatest(userTypes.RESET_PASSWORD_START, resetPassword)
+  yield takeLatest(userTypes.RESET_PASSWORD_START, resetPassword);
 }
 
 // Google sign in
 export function* googleSignIn() {
   try {
-    const { user } = yield auth.signInWithPopup(GoogleProvider)
-    yield getSnapshotFromUserAuth(user)
+    const { user } = yield auth.signInWithPopup(GoogleProvider);
+    yield getSnapshotFromUserAuth(user);
   } catch (err) {
-    console.log(err)
+    console.log(err);
   }
 }
 
 export function* onGoogleSignInStart() {
-  yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn)
+  yield takeLatest(userTypes.GOOGLE_SIGN_IN_START, googleSignIn);
 }
 
 // Calls all of the sagas and runs in parallel
@@ -135,5 +135,5 @@ export default function* userSagas() {
     call(onSignUpUserStart),
     call(onResetPasswordStart),
     call(onGoogleSignInStart),
-  ])
+  ]);
 }

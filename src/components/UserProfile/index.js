@@ -1,10 +1,10 @@
-import React from 'react'
-import './styles.scss'
-import userIMG from './../../assets/user.png'
+import React from "react";
+import "./styles.scss";
+import userIMG from "./../../assets/user.png";
 
 const UserProfile = (props) => {
-  const { currentUser } = props
-  const { displayName } = currentUser
+  const { currentUser } = props;
+  const { displayName } = currentUser;
 
   return (
     <div className='userProfile'>
@@ -19,7 +19,7 @@ const UserProfile = (props) => {
         </li>
       </ul>
     </div>
-  )
-}
+  );
+};
 
-export default UserProfile
+export default UserProfile;

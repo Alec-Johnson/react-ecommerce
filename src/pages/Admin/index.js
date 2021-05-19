@@ -1,57 +1,57 @@
-import React, { useState, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import {
   addProductStart,
   fetchProductsStart,
   deleteProductStart,
-} from './../../redux/Products/products.actions'
-import Modal from './../../components/Modal'
-import FormInput from './../../components/Forms/FormInput'
-import FormSelect from './../../components/Forms/FormSelect'
-import Button from './../../components/Forms/Button'
-import LoadMore from './../../components/LoadMore'
-import CKEditor from 'ckeditor4-react'
+} from "./../../redux/Products/products.actions";
+import Modal from "./../../components/Modal";
+import FormInput from "./../../components/Forms/FormInput";
+import FormSelect from "./../../components/Forms/FormSelect";
+import Button from "./../../components/Forms/Button";
+import LoadMore from "./../../components/LoadMore";
+import CKEditor from "ckeditor4-react";
 
-import './styles.scss'
+import "./styles.scss";
 
 const mapState = ({ productsData }) => ({
   products: productsData.products,
-})
+});
 
 const Admin = (props) => {
-  const { products } = useSelector(mapState)
-  const dispatch = useDispatch()
-  const [hideModal, setHideModal] = useState(true)
-  const [productCategory, setProductCategory] = useState('mens')
-  const [productName, setProductName] = useState('')
-  const [productThumbnail, setProductThumbnail] = useState('')
-  const [productPrice, setProductPrice] = useState(0)
-  const [productDesc, setProductDesc] = useState('')
+  const { products } = useSelector(mapState);
+  const dispatch = useDispatch();
+  const [hideModal, setHideModal] = useState(true);
+  const [productCategory, setProductCategory] = useState("mens");
+  const [productName, setProductName] = useState("");
+  const [productThumbnail, setProductThumbnail] = useState("");
+  const [productPrice, setProductPrice] = useState(0);
+  const [productDesc, setProductDesc] = useState("");
 
-  const { data, queryDoc, isLastPage } = products
+  const { data, queryDoc, isLastPage } = products;
 
   useEffect(() => {
-    dispatch(fetchProductsStart())
-  }, [])
+    dispatch(fetchProductsStart());
+  }, []);
 
-  const toggleModal = () => setHideModal(!hideModal)
+  const toggleModal = () => setHideModal(!hideModal);
 
   const configModal = {
     hideModal,
     toggleModal,
-  }
+  };
 
   const resetForm = () => {
-    setHideModal(true)
-    setProductCategory('mens')
-    setProductName('')
-    setProductThumbnail('')
-    setProductPrice(0)
-    setProductDesc('')
-  }
+    setHideModal(true);
+    setProductCategory("mens");
+    setProductName("");
+    setProductThumbnail("");
+    setProductPrice(0);
+    setProductDesc("");
+  };
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
 
     dispatch(
       addProductStart({
@@ -61,9 +61,9 @@ const Admin = (props) => {
         productPrice,
         productDesc,
       })
-    )
-    resetForm()
-  }
+    );
+    resetForm();
+  };
 
   const handleLoadMore = () => {
     dispatch(
@@ -71,12 +71,12 @@ const Admin = (props) => {
         startAfterDoc: queryDoc,
         persistProducts: data,
       })
-    )
-  }
+    );
+  };
 
   const configLoadMore = {
     onLoadMoreEvent: handleLoadMore,
-  }
+  };
 
   return (
     <div className='admin'>
@@ -97,12 +97,12 @@ const Admin = (props) => {
               label='Category'
               options={[
                 {
-                  value: 'mens',
-                  name: 'Mens',
+                  value: "mens",
+                  name: "Mens",
                 },
                 {
-                  value: 'womens',
-                  name: 'Womens',
+                  value: "womens",
+                  name: "Womens",
                 },
               ]}
               handleChange={(e) => setProductCategory(e.target.value)}
@@ -168,7 +168,7 @@ const Admin = (props) => {
                           productCategory,
                           productDesc,
                           documentID,
-                        } = product
+                        } = product;
                         return (
                           <tr key={index}>
                             <td>
@@ -192,7 +192,7 @@ const Admin = (props) => {
                               </Button>
                             </td>
                           </tr>
-                        )
+                        );
                       })}
                   </tbody>
                 </table>
@@ -216,7 +216,7 @@ const Admin = (props) => {
         </table>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Admin
+export default Admin;

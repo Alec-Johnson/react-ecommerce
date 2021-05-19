@@ -1,5 +1,5 @@
-import { useAuth } from './../hooks'
+import { useAuth } from "./../hooks";
 
-const WithAuth = (props) => useAuth(props) && props.children
+const WithAuth = (props) => useAuth(props) && props.children;
 
-export default WithAuth
+export default WithAuth;

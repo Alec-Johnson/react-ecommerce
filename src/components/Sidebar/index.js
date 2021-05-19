@@ -1,18 +1,18 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
-import UserProfile from './../UserProfile'
-import './styles.scss'
+import React from "react";
+import { useSelector } from "react-redux";
+import UserProfile from "./../UserProfile";
+import "./styles.scss";
 
 const mapState = ({ user }) => ({
   currentUser: user.currentUser,
-})
+});
 
 const Sidebar = ({ children }) => {
-  const { currentUser } = useSelector(mapState)
+  const { currentUser } = useSelector(mapState);
 
   const configUserProfile = {
     currentUser,
-  }
+  };
 
   return (
     <div className='verticalNav'>
@@ -20,7 +20,7 @@ const Sidebar = ({ children }) => {
 
       <div className='menu'>{children}</div>
     </div>
-  )
-}
+  );
+};
 
-export default Sidebar
+export default Sidebar;

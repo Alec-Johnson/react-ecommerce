@@ -24,7 +24,7 @@ import Login from "./pages/Login";
 import Recovery from "./pages/Recovery";
 import Dashboard from "./pages/Dashboard";
 import Admin from "./pages/Admin";
-import Search from "./pages/Search";
+import Shop from "./pages/Shop";
 import ProductDetails from "./pages/ProductDetails";
 import Cart from "./pages/Cart";
 import Payment from "./pages/Payment";
@@ -38,7 +38,7 @@ const App = () => {
   }, []);
 
   return (
-    <div className='App'>
+    <div className='App' id='App'>
       <AdminTools />
       <Switch>
         <Route
@@ -55,7 +55,7 @@ const App = () => {
           path='/search'
           render={() => (
             <DefaultLayout>
-              <Search />
+              <Shop />
             </DefaultLayout>
           )}
         />
@@ -63,7 +63,7 @@ const App = () => {
           path='/search/:filterType'
           render={() => (
             <DefaultLayout>
-              <Search />
+              <Shop />
             </DefaultLayout>
           )}
         />

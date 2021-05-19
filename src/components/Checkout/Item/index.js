@@ -1,27 +1,27 @@
-import React from 'react'
-import { useDispatch } from 'react-redux'
+import React from "react";
+import { useDispatch } from "react-redux";
 import {
   removeCartItem,
   addProduct,
   reduceCartItem,
-} from './../../../redux/Cart/cart.actions'
+} from "./../../../redux/Cart/cart.actions";
 
 const Item = (product) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const { productName, productThumbnail, productPrice, quantity, documentID } =
-    product
+    product;
 
   const handleRemoveCartItem = (documentID) => {
-    dispatch(removeCartItem({ documentID }))
-  }
+    dispatch(removeCartItem({ documentID }));
+  };
 
   const handleAddProduct = (product) => {
-    dispatch(addProduct(product))
-  }
+    dispatch(addProduct(product));
+  };
 
   const handleReduceCartItem = (product) => {
-    dispatch(reduceCartItem(product))
-  }
+    dispatch(reduceCartItem(product));
+  };
 
   return (
     <table className='cartItem' border='0' cellPadding='10' cellSpacing='0'>
@@ -56,7 +56,7 @@ const Item = (product) => {
         </tr>
       </tbody>
     </table>
-  )
-}
+  );
+};
 
-export default Item
+export default Item;

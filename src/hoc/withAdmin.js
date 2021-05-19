@@ -1,5 +1,5 @@
-import { useAdmin } from './../hooks'
+import { useAdmin } from "./../hooks";
 
-const WithAdmin = (props) => useAdmin(props) && props.children
+const WithAdmin = (props) => useAdmin(props) && props.children;
 
-export default WithAdmin
+export default WithAdmin;

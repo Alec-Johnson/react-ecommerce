@@ -1,18 +1,18 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
-import { signOutUserStart } from './../redux/User/user.actions'
+import React from "react";
+import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { signOutUserStart } from "./../redux/User/user.actions";
 
-import Header from './../components/Header'
-import Sidebar from './../components/Sidebar'
-import Footer from './../components/Footer'
+import Header from "./../components/Header";
+import Sidebar from "./../components/Sidebar";
+import Footer from "./../components/Footer";
 
 const DashBoardLayout = (props) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   const signOut = () => {
-    dispatch(signOutUserStart())
-  }
+    dispatch(signOutUserStart());
+  };
 
   return (
     <div className='dashboardLayout'>
@@ -36,7 +36,7 @@ const DashBoardLayout = (props) => {
       </div>
       <Footer />
     </div>
-  )
-}
+  );
+};
 
-export default DashBoardLayout
+export default DashBoardLayout;

@@ -1,43 +1,43 @@
-import React, { useEffect } from 'react'
-import { useParams, useHistory } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import {
   fetchProductStart,
   setProduct,
-} from './../../redux/Products/products.actions'
-import { addProduct } from './../../redux/Cart/cart.actions'
-import Button from './../Forms/Button'
-import './styles.scss'
+} from "./../../redux/Products/products.actions";
+import { addProduct } from "./../../redux/Cart/cart.actions";
+import Button from "./../Forms/Button";
+import "./styles.scss";
 
 const mapState = (state) => ({
   product: state.productsData.product,
-})
+});
 
 const ProductCard = () => {
-  const dispatch = useDispatch()
-  const history = useHistory()
-  const { productID } = useParams()
-  const { product } = useSelector(mapState)
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const { productID } = useParams();
+  const { product } = useSelector(mapState);
 
-  const { productName, productThumbnail, productPrice, productDesc } = product
+  const { productName, productThumbnail, productPrice, productDesc } = product;
 
   useEffect(() => {
-    dispatch(fetchProductStart(productID))
+    dispatch(fetchProductStart(productID));
 
     return () => {
-      dispatch(setProduct({}))
-    }
-  }, [])
+      dispatch(setProduct({}));
+    };
+  }, []);
 
   const handleAddToCart = (product) => {
-    if (!product) return
-    dispatch(addProduct(product))
-    history.push('/cart')
-  }
+    if (!product) return;
+    dispatch(addProduct(product));
+    history.push("/cart");
+  };
 
   const configAddToCartBtn = {
-    type: 'button',
-  }
+    type: "button",
+  };
 
   return (
     <div className='productCard'>
@@ -68,7 +68,7 @@ const ProductCard = () => {
         </ul>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default ProductCard
+export default ProductCard;
