@@ -57,9 +57,21 @@
             text-transform: uppercase;
             cursor: pointer;
           }
+          span {
+            font-size: 1.8rem;
+            line-height: 6.5rem;
+            vertical-align: middle;
+            color: black;
+            text-transform: uppercase;
+            cursor: pointer;
+          }
+        }
+      }
+      .mobileMenu {
+        @media (min-width: 768px) {
+          display: none;
         }
       }
     }
   }
 }
-
