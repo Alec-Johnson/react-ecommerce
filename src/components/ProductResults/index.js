@@ -24,7 +24,7 @@ const ProductResults = () => {
 
   const handleFilter = (e) => {
     const nextFilter = e.target.value;
-    history.push(`/search/${nextFilter}`);
+    history.push(`/shop/${nextFilter}`);
   };
 
   const configFilters = {

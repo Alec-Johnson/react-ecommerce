@@ -11,7 +11,7 @@ const UserProfile = (props) => {
       <ul>
         <li>
           <div className='img'>
-            <img src={userIMG} />
+            <img alt='My Profile' src={userIMG} />
           </div>
         </li>
         <li>

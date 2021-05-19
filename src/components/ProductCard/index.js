@@ -42,7 +42,7 @@ const ProductCard = () => {
   return (
     <div className='productCard'>
       <div className='hero'>
-        <img src={productThumbnail} />
+        <img alt={productName} src={productThumbnail} />
       </div>
       <div className='productDetails'>
         <ul>
