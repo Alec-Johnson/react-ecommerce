@@ -27,6 +27,7 @@ const useStyles = makeStyles({
   menuIcon: {
     width: 25,
     height: 25,
+    color: "gray",
   },
   menuText: {
     fontSize: "16px",

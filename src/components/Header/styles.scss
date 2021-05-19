@@ -1,6 +1,7 @@
 .header {
   height: 6.5rem;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+  background-color: whitesmoke;
 
   .wrap {
     max-width: 1450px;
@@ -33,6 +34,10 @@
         }
       }
 
+      .right li {
+        margin: 0.2rem;
+      }
+
       ul,
       ul li {
         height: 100%;
@@ -46,16 +51,38 @@
           display: inline-block;
           margin: 0 1rem;
           list-style-type: none;
+          vertical-align: middle;
+          &:hover svg {
+            color: #ff9c00;
+            transition: 200ms ease-in;
+          }
 
           a {
             // Styles for react-router Link tag
+            display: flex;
             font-size: 1.8rem;
             line-height: 6.5rem; // centers text vertically
-            vertical-align: middle;
+            align-items: center;
             color: black;
             text-decoration: none;
-            text-transform: uppercase;
             cursor: pointer;
+            &:hover {
+              color: #ff9c00;
+              transition: 200ms ease-in;
+            }
+
+            .MuiBadge-badge {
+              font-size: 1.5rem; // size of value inside cart badge
+              top: 10px;
+              right: -3px;
+              border: 2px solid white;
+              padding: 0 4px;
+            }
+            svg {
+              width: 2.7rem;
+              height: 2.7rem;
+              color: rgb(88, 88, 88);
+            }
           }
           span {
             font-size: 1.8rem;
