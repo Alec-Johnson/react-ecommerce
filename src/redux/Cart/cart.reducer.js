@@ -4,11 +4,11 @@ import {
   handleRemoveCartItem,
   handleReduceCartItem,
 } from "./cart.utils";
-const INITAL_STATE = {
+const INITIAL_STATE = {
   cartItems: [],
 };
 
-const cartReducer = (state = INITAL_STATE, action) => {
+const cartReducer = (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case cartTypes.ADD_TO_CART:
       return {
@@ -29,7 +29,7 @@ const cartReducer = (state = INITAL_STATE, action) => {
     case cartTypes.CLEAR_CART:
       return {
         ...state,
-        ...INITAL_STATE,
+        ...INITIAL_STATE,
       };
     case cartTypes.REMOVE_CART_ITEM:
       return {
