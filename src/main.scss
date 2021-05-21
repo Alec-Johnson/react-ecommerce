@@ -25,7 +25,7 @@ body,
 }
 
 body {
-  font-family: 'Open Sans', sans-serif;
+  font-family: "Open Sans", sans-serif;
   font-size: 1.8rem;
   font-weight: 400;
   line-height: 1;
@@ -71,17 +71,9 @@ a:hover {
 }
 
 .main {
-  max-width: 1450px;
+  max-width: 1350px;
   width: 100%;
   height: calc(100% - 6.5rem);
-  padding: 0 10px;
-  margin: 0 auto;
-}
-
-.main {
-  width: 100%;
-  height: calc(100% - 6.5rem);
-  max-width: 1450px;
   padding: 0 10px;
   margin: 0 auto;
 }
@@ -109,12 +101,18 @@ a:hover {
   }
 }
 
-.adminLayout {
+.adminLayout,
+.dashboardLayout {
   height: calc(100% - 6.5rem - 5.8rem - 3.6rem);
 }
 
-.dashboardLayout {
-  height: calc(100% - 6.5rem - 5.8rem);
+.fullHeight {
+  height: calc(100% - 6.5rem);
+}
+
+.shopPage {
+  width: 100%;
+  margin-bottom: 3rem;
 }
 
 @media only screen and (max-width: 980px) {

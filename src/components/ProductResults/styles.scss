@@ -1,37 +1,77 @@
 .products {
-  display: block;
+  display: flex;
+  flex-direction: column;
   width: 100%;
-  padding: 0;
-  margin: 2rem 0;
-
   .productResults {
-    margin: 3rem -10px 0;
-    display: flex;
-    flex-wrap: wrap;
+    width: 100%;
+    display: grid;
+    place-content: center;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, auto);
+    grid-gap: 2rem;
+    @media (max-width: 1400px) {
+      margin-left: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(4, auto);
+    }
+    @media (max-width: 1000px) {
+      grid-template-columns: repeat(2, 50%);
+      grid-template-rows: repeat(6, auto);
+    }
+    @media (max-width: 500px) {
+      margin-left: 0;
+      padding-left: 0;
+      grid-template-columns: repeat(1, 25rem);
+      grid-template-rows: repeat(6, auto);
+    }
+  }
+  .loadMore {
+    padding-top: 2rem;
   }
 }
 
 .product {
-  width: 33%;
-  margin: 0 auto 2rem;
-  padding: 0 10px;
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
 
+  @media (max-width: 660px) {
+    width: 24rem;
+    height: 36rem;
+    margin-bottom: 3rem;
+  }
   .thumb {
-    display: block;
+    display: flex;
     width: 100%;
 
     img {
-      display: block;
-      width: 100%;
+      width: 30rem;
+      height: 45rem;
       margin: 0;
+      @media (max-width: 660px) {
+        width: 24rem;
+        height: 36rem;
+      }
     }
   }
 
   .details {
-    display: block;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     width: 100%;
-    padding: 1rem 0;
-    margin: 0 auto;
+
+    .addToCart {
+      display: flex;
+      margin-top: 0.2rem;
+      width: 8rem;
+      height: 4rem;
+
+      .btn {
+        padding: 0;
+        height: 3rem;
+      }
+    }
 
     ul,
     ul li {
@@ -45,26 +85,22 @@
         width: 100%;
         display: block;
         text-align: left;
-        margin: 0 0 0.5rem;
-
+        line-height: 1rem;
         a {
           color: black;
         }
 
         .name {
-          font-size: 2.2rem;
-          line-height: 1.2;
-          font-weight: 400;
+          font-size: 1rem;
+          font-weight: 600;
+          text-transform: uppercase;
         }
 
         .price {
-          font-size: 1.7rem;
+          font-size: 1rem;
           line-height: 1;
           font-weight: 400;
-        }
-
-        .addToCart {
-          margin: 2rem 0 0 0;
+          color: grey;
         }
       }
     }

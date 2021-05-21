@@ -25,6 +25,11 @@ const Admin = (props) => {
   const [productCategory, setProductCategory] = useState("mens");
   const [productName, setProductName] = useState("");
   const [productThumbnail, setProductThumbnail] = useState("");
+  const [productPictures, setProductPictures] = useState({
+    picture1: "",
+    picture2: "",
+    picture3: "",
+  });
   const [productPrice, setProductPrice] = useState(0);
   const [productDesc, setProductDesc] = useState("");
 
@@ -48,6 +53,11 @@ const Admin = (props) => {
     setProductThumbnail("");
     setProductPrice(0);
     setProductDesc("");
+    setProductPictures({
+      picture1: "",
+      picture2: "",
+      picture3: "",
+    });
   };
 
   const handleSubmit = (e) => {
@@ -58,6 +68,7 @@ const Admin = (props) => {
         productCategory,
         productName,
         productThumbnail,
+        productPictures,
         productPrice,
         productDesc,
       })
@@ -123,6 +134,45 @@ const Admin = (props) => {
             />
 
             <FormInput
+              label='Second image URL'
+              type='url'
+              name='picture1'
+              value={productPictures.picture1}
+              handleChange={(e) =>
+                setProductPictures({
+                  ...productPictures,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+
+            <FormInput
+              label='Third image URL'
+              type='url'
+              name='picture2'
+              value={productPictures.picture2}
+              handleChange={(e) =>
+                setProductPictures({
+                  ...productPictures,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+
+            <FormInput
+              label='Fourth image URL'
+              type='url'
+              name='picture3'
+              value={productPictures.picture3}
+              handleChange={(e) =>
+                setProductPictures({
+                  ...productPictures,
+                  [e.target.name]: e.target.value,
+                })
+              }
+            />
+
+            <FormInput
               label='Price'
               type='number'
               min='0.00'
@@ -167,6 +217,7 @@ const Admin = (props) => {
                           productPrice,
                           productCategory,
                           productDesc,
+                          productPictures,
                           documentID,
                         } = product;
                         return (
@@ -178,6 +229,32 @@ const Admin = (props) => {
                                 alt={productName}
                               />
                             </td>
+                            {productPictures && (
+                              <>
+                                <td>
+                                  <img
+                                    className='thumb'
+                                    src={productPictures.picture1}
+                                    alt={productName}
+                                  />
+                                </td>
+                                <td>
+                                  <img
+                                    className='thumb'
+                                    src={productPictures.picture2}
+                                    alt={productName}
+                                  />
+                                </td>
+                                <td>
+                                  <img
+                                    className='thumb'
+                                    src={productPictures.picture3}
+                                    alt={productName}
+                                  />
+                                </td>
+                              </>
+                            )}
+
                             <td>{productName}</td>
                             <td>{productCategory}</td>
                             <td>${productPrice}</td>

@@ -44,17 +44,15 @@ const Product = (product) => {
           <li>
             <span className='price'>${productPrice}</span>
           </li>
-          <li>
-            <div className='addToCart'>
-              <Button
-                {...configAddToCartBtn}
-                onClick={() => handleAddToCart(product)}
-              >
-                Add to cart
-              </Button>
-            </div>
-          </li>
         </ul>
+        <div className='addToCart'>
+          <Button
+            {...configAddToCartBtn}
+            onClick={() => handleAddToCart(product)}
+          >
+            Add to cart
+          </Button>
+        </div>
       </div>
     </div>
   );

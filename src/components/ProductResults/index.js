@@ -71,7 +71,6 @@ const ProductResults = () => {
 
   return (
     <div className='products'>
-      <h1>Browse Products</h1>
       <FormSelect {...configFilters} />
 
       <div className='productResults'>
