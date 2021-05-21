@@ -33,18 +33,21 @@ const Footer = () => {
           </div>
           <div className='column'>
             <div className='title'>Social Media</div>
-            <Link to='/'>
-              <FacebookIcon />
-            </Link>
-            <Link to='/'>
-              <InstagramIcon />
-            </Link>
-            <Link to='/'>
-              <TwitterIcon />
-            </Link>
-            <Link to='/'>
-              <LinkedInIcon />
-            </Link>
+            <div className='links'>
+              <Link to='/' aria-label='facebook'>
+                <FacebookIcon />
+              </Link>
+              <Link to='/' aria-label='instagram'>
+                <InstagramIcon />
+              </Link>
+              <Link to='/' aria-label='twitter'>
+                <TwitterIcon />
+              </Link>
+              <Link to='/' aria-label='linkedin'>
+                <LinkedInIcon />
+              </Link>
+            </div>
+            <p>© Alec Johnson - 5/2021</p>
           </div>
         </div>
       </div>

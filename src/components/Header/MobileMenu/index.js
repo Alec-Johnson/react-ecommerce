@@ -179,7 +179,11 @@ const MobileMenu = ({ currentUser, totalCartItems }) => {
     <div className='mobileMenu'>
       <>
         <Button onClick={toggleDrawer(anchor, true)}>
-          <MenuIcon className={classes.menuBtn} />
+          {!state.right ? (
+            <MenuIcon className={classes.menuBtn} />
+          ) : (
+            <ExitToAppIcon className={classes.menuBtn} />
+          )}
         </Button>
         <Drawer
           anchor={anchor}
