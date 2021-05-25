@@ -6,9 +6,9 @@ name: Deploy to Firebase Hosting on merge
   push:
     branches:
       - starter
+env:
+  CI: false
 jobs:
-  env:
-    CI: false
   build_and_deploy:
     runs-on: ubuntu-latest
     steps:
