@@ -10,5 +10,5 @@ export const checkUserIsAdmin = (currentUser) => {
 };
 
 export const apiInstance = axios.create({
-  baseURL: "http://localhost:5001/react-ecommerce-e6547/us-central1/api", // firebase function api url
+  baseURL: "https://us-central1-react-ecommerce-e6547.cloudfunctions.net/api", // firebase function api url
 });
