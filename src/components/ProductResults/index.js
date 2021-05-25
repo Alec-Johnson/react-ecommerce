@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+
 import { fetchProductsStart } from "../../redux/Products/products.actions";
 import Product from "./Product";
 import FormSelect from "./../Forms/FormSelect";
@@ -17,7 +18,7 @@ const ProductResults = () => {
   const { filterType } = useParams();
   const { products } = useSelector(mapState);
   const { data, queryDoc, isLastPage } = products;
-
+  console.log(products);
   useEffect(() => {
     dispatch(fetchProductsStart({ filterType }));
   }, [filterType]);
@@ -41,6 +42,14 @@ const ProductResults = () => {
       {
         name: "Womens",
         value: "womens",
+      },
+      {
+        name: "Sale",
+        value: "sale",
+      },
+      {
+        name: "Accessories",
+        value: "accessories",
       },
     ],
     handleChange: handleFilter,

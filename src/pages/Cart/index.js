@@ -1,9 +1,9 @@
 import React from "react";
-import Checkout from "./../../components/Checkout";
+import MyCart from "./../../components/MyCart";
 const Cart = () => {
   return (
     <div>
-      <Checkout />
+      <MyCart />
     </div>
   );
 };
